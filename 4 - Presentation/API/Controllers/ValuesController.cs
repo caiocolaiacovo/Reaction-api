@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Reaction_api.Controllers {
+namespace Reaction_api.Presentation.Controllers {
     [Route ("api/moments")]
     public class ValuesController : Controller {
         // GET api/values
