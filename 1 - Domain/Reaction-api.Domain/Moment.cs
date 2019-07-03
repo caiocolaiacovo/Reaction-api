@@ -1,6 +1,6 @@
 using Reaction_api.Domain._Exceptions;
 
-namespace Reaction_api.Domain.Entities
+namespace Reaction_api.Domain
 {
     public class Moment
     {
@@ -9,14 +9,11 @@ namespace Reaction_api.Domain.Entities
         public string Picture { get; private set; }
         public int Reactions { get; private set; }
 
-
-
         public Moment(User user, string elapsedTime, string picture, int reactions)
         {
             if (user == null)
-            {
-                throw new DomainException("Usuário é obrigatório");
-            }
+                throw new DomainException("User is required");
+            
             User = user;
             ElapsedTime = elapsedTime;
             Picture = picture;

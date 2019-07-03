@@ -56,8 +56,12 @@ namespace Reaction_api.Presentation.Controllers {
 
         // GET api/values/5
         [HttpGet ("{id}")]
-        public string Get (int id) {
-            return "value";
+        public object Get (int id, [FromQuery] int pagina) {
+            return new {
+                data = new string[] { },
+                    totalDePaginas = 15,
+                    paginaAtual = pagina,
+            };
         }
 
         // POST api/values

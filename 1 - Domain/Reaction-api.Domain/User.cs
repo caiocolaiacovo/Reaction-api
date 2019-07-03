@@ -1,6 +1,7 @@
 using Reaction_api.Domain._Exceptions;
 
-namespace Reaction_api.Domain.Entities {
+namespace Reaction_api.Domain
+{
     public class User {
         public string Name { get; private set; }
         public string Profile { get; private set; }
