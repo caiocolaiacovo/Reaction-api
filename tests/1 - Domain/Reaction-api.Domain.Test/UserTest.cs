@@ -4,6 +4,9 @@ using Reaction_api.Domain._Exceptions;
 using Reaction_api.Domain;
 using Reaction_api.Domain.Test._Builders;
 using Xunit;
+using Reaction_api.Domain.Test._Util;
+using System;
+using System.Collections.Generic;
 
 namespace Reaction_api.Domain.Test
 {
@@ -24,6 +27,7 @@ namespace Reaction_api.Domain.Test
                 Name = faker.Person.FullName,
                 Profile = faker.Person.UserName,
                 Avatar = faker.Internet.Url(),
+                Moments = new List<Moment>()
             };
 
             var user = UserBuilder.Instance().WithName(expectedUser.Name).
@@ -37,37 +41,34 @@ namespace Reaction_api.Domain.Test
         [Theory]
         [InlineData(null)]
         [InlineData("")]
+        [InlineData(" ")]
         public void Should_not_create_a_user_without_name(string invalidName)
         {
-            var exception = Assert.Throws<DomainException>(() =>
-               UserBuilder.Instance().WithName(invalidName).Build()
-            );
-
-            Assert.Equal("Name is required", exception.Message);
+            Action action = () => UserBuilder.Instance().WithName(invalidName).Build();
+            
+            Assert.Throws<DomainException>(action).WithMessage("Name is required");
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
+        [InlineData(" ")]
         public void Should_not_create_a_user_without_profile(string invalidProfile)
         {
-            var exception = Assert.Throws<DomainException>(() =>
-                UserBuilder.Instance().WithProfile(invalidProfile).Build()
-            );
-
-            Assert.Equal("Profile is required", exception.Message);
+            Action action = () => UserBuilder.Instance().WithProfile(invalidProfile).Build();
+            
+            Assert.Throws<DomainException>(action).WithMessage("Profile is required");
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
+        [InlineData(" ")]
         public void Should_not_create_a_user_without_avatar(string invalidAvatar)
         {
-            var exception = Assert.Throws<DomainException>(() =>
-               UserBuilder.Instance().WithAvatar(invalidAvatar).Build()
-            );
-
-            Assert.Equal("Avatar is required", exception.Message);
+            Action action = () => UserBuilder.Instance().WithAvatar(invalidAvatar).Build();
+            
+            Assert.Throws<DomainException>(action).WithMessage("Avatar is required");
         }
     }
 }

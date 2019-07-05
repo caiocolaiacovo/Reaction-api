@@ -1,0 +1,30 @@
+namespace Reaction_api.Domain.Test._Builders
+{
+    public class CommentBuilder
+    {
+        public User User { get; private set; }
+        public string Text { get; private set; }
+
+        public static CommentBuilder Instance()
+        {
+            return new CommentBuilder();
+        }
+
+        public CommentBuilder WithUser(User user)
+        {
+            User = user;
+            return this;
+        }
+
+        public CommentBuilder WithText(string text)
+        {
+            Text = text;
+            return this;
+        }
+
+        public Comment Build()
+        {
+            return new Comment(User, Text);
+        }
+    }
+}
