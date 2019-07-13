@@ -4,7 +4,7 @@ using Reaction_api.Domain._Util;
 
 namespace Reaction_api.Domain
 {
-    public class User {
+    public class User : Entity {
         public string Name { get; private set; }
         public string Profile { get; private set; }
         public string Avatar { get; private set; }

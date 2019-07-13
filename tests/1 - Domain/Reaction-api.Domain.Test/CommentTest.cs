@@ -1,20 +1,15 @@
-using Bogus;
+using System;
 using ExpectedObjects;
 using Reaction_api.Domain._Exceptions;
+using Reaction_api.Domain.Test._Base;
 using Reaction_api.Domain.Test._Builders;
+using Reaction_api.Domain.Test._Util;
 using Xunit;
 
 namespace Reaction_api.Domain.Test
 {
-    public class CommentTest
+    public class CommentTest : UnitTestBase
     {
-        public Faker faker { get; private set; }
-
-        public CommentTest()
-        {
-            faker = new Faker();
-        }
-
         [Fact]
         public void Should_create_a_comment()
         {
@@ -31,28 +26,28 @@ namespace Reaction_api.Domain.Test
         [Fact]
         public void Should_not_create_a_comment_without_user()
         {
-            var exception = Assert.Throws<DomainException>(() => 
-                CommentBuilder.Instance().WithUser(null).Build()
-            );
+            const string expectedMessage = "User is required";
 
-            Assert.Equal("User is required", exception.Message);
+            Action action = () => CommentBuilder.Instance().WithUser(null).Build();
+
+            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
         }
 
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
         [InlineData(null)]
-        public void Should_not_create_a_comment_without_text(string invalidText)
+        public void Should_not_create_a_comment_with_invalid_text(string invalidText)
         {
-            var exception = Assert.Throws<DomainException>(() => 
-                CommentBuilder
-                    .Instance()
-                    .WithUser(UserBuilder.Instance().Build())
-                    .WithText(invalidText)
-                    .Build()
-            );
+            const string expectedMessage = "Text is required";
 
-            Assert.Equal("Text is required", exception.Message);
+            Action action = () => CommentBuilder
+                .Instance()
+                .WithUser(UserBuilder.Instance().Build())
+                .WithText(invalidText)
+                .Build();
+
+            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
         }
     }
 }

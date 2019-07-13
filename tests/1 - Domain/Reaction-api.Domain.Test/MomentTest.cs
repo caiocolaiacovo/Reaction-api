@@ -1,35 +1,28 @@
-using Bogus;
 using ExpectedObjects;
 using Reaction_api.Domain._Exceptions;
-using Reaction_api.Domain;
 using Reaction_api.Domain.Test._Builders;
 using Xunit;
+using Reaction_api.Domain.Test._Base;
+using System;
+using Reaction_api.Domain.Test._Util;
 
 namespace Reaction_api.Domain.Test
 {
-    public class MomentTest
+    public class MomentTest : UnitTestBase
     {
-        public Faker faker { get; set; }
-        public MomentTest()
-        {
-            faker = new Faker();
-        }
-
         [Fact]
         public void Should_create_a_moment()
         {
             var expectedMoment = new
             {
                 User = UserBuilder.Instance().Build(),
-                ElapsedTime = faker.Date.ToString(),
                 Picture = faker.Internet.Url(),
-                Reactions = faker.Random.Number()
+                Description = faker.Lorem.Paragraph()
             };
 
             var moment = new Moment(expectedMoment.User,
-                                    expectedMoment.ElapsedTime,
                                     expectedMoment.Picture,
-                                    expectedMoment.Reactions);
+                                    expectedMoment.Description);
 
             expectedMoment.ToExpectedObject().ShouldMatch(moment);
         }
@@ -37,14 +30,61 @@ namespace Reaction_api.Domain.Test
         [Fact]
         public void Should_not_create_a_moment_without_user()
         {
-            var exception = Assert.Throws<DomainException>(() => 
-                MomentBuilder
-                    .Instance()
-                    .WithUser(null)
-                    .Build()
-            );
+            var expectedMessage = "User is required";
 
-            Assert.Equal("User is required", exception.Message);
+            Action action = () => MomentBuilder.Instance().WithUser(null).Build();
+            
+            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public void Shoud_not_create_a_moment_with_invalid_picture(string invalidPicture)
+        {
+            var expectedMessage = "Picture is required";
+
+            Action action = () => MomentBuilder.Instance().WithPicture(invalidPicture).Build();
+            
+            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public void Shoud_not_create_a_moment_with_invalid_description(string invalidDescription)
+        {
+            var expectedMessage = "Description is required";
+
+            Action action = () => MomentBuilder.Instance().WithDescription(invalidDescription).Build();
+            
+            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+        }
+
+        [Fact]
+        public void Should_add_comment_to_a_moment()
+        {
+            var comment = CommentBuilder.Instance().Build();
+            var moment = MomentBuilder.Instance().Build();
+            var expectedComments = new[] { comment };
+
+            moment.AddComment(comment);
+
+            var comments = moment.Comments;
+            expectedComments.ToExpectedObject().ShouldMatch(comments);
+        }
+
+        [Fact]
+        public void Should_not_add_a_null_comment()
+        {
+            var expectedMessage = "Comment is required";
+            var moment = MomentBuilder.Instance().Build();
+
+            Action action = () => moment.AddComment(null);
+
+            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
         }
     }
 }
