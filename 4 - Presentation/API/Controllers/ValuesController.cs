@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Reaction_api.Presentation.Controllers {
-    [Route ("api/moments")]
+    [Route ("api/moments2")]
     public class ValuesController : Controller {
         // GET api/values
         [HttpGet]

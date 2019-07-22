@@ -8,6 +8,8 @@ namespace Reaction_api.Domain
         public User User { get; private set; }
         public string Text { get; private set; }
 
+        protected Comment() { }
+        
         public Comment(User user, string text)
         {
             DomainValidator.New()

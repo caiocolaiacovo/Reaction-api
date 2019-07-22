@@ -8,7 +8,9 @@ namespace Reaction_api.Domain
         public string Name { get; private set; }
         public string Profile { get; private set; }
         public string Avatar { get; private set; }
-        public IEnumerable Moments { get; private set; }
+        public virtual ICollection<Moment> Moments { get; private set; }
+
+        protected User() {}
 
         public User (string name, string profile, string avatar) {
             DomainValidator.New()

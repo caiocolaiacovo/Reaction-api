@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.6" />
+    <PackageReference Include="Microsoft.AspNetCore.All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\3 - Infra\3.2 - Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\..\3 - Infra\3.1 - Infra.Data\Reaction-api.Infra.Data\Reaction-api.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\2 - Application\Reaction-api.Application\Reaction-api.Application.csproj" />
   </ItemGroup>
 
 </Project>

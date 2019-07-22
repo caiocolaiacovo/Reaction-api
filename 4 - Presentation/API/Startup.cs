@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Reaction_api.Infra.CrossCutting.IoC;
+using Reaction_api.Infra.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace Reaction_api.Presentation {
+namespace Reaction_api.Presentation
+{
     public class Startup {
         public Startup (IConfiguration configuration) {
             Configuration = configuration;
@@ -21,6 +18,11 @@ namespace Reaction_api.Presentation {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ();
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+            
+            Bootstrap.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

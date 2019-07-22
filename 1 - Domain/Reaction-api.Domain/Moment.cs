@@ -14,6 +14,8 @@ namespace Reaction_api.Domain
         public int Reactions { get; protected set; }
         public virtual ICollection<Comment> Comments { get; protected set; }
 
+        protected Moment() {}
+
         public Moment(User user, string picture, string description)
         {
             DomainValidator.New()

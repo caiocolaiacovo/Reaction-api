@@ -5,23 +5,27 @@
    "version": "0.2.0",
    "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "API (.NET Core Launch)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/tests/1 - Domain/Reaction-api.Domain.Test/bin/Debug/netcoreapp2.2/Reaction-api.Domain.Test.dll",
+            "program": "${workspaceFolder}/4 - Presentation/API/bin/Debug/netcoreapp2.2/Reaction-api.Presentation.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/tests/1 - Domain/Reaction-api.Domain.Test",
+            "cwd": "${workspaceFolder}/4 - Presentation/API",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
         },
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
-        }
+        },
+        
     ]
 }
