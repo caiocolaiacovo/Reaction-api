@@ -1,35 +1,35 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F3F22150-9553-4B8C-B743-4591967725D5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{E6E2F516-AB17-4E4F-8B1B-844AB8FB75CF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E6E2F516-AB17-4E4F-8B1B-844AB8FB75CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaction-api.Domain.Test", "tests\1 - Domain\Reaction-api.Domain.Test\Reaction-api.Domain.Test.csproj", "{AAED98B1-9792-47A4-A2B6-D46BB8BC99FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Domain.Test", "tests\Domain\Reaction-api.Domain.Test\Reaction-api.Domain.Test.csproj", "{AAED98B1-9792-47A4-A2B6-D46BB8BC99FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Presentation", "{DCBDE5D4-4DDF-4058-9795-D1C5F080FFDA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DCBDE5D4-4DDF-4058-9795-D1C5F080FFDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaction-api.Presentation", "4 - Presentation\API\Reaction-api.Presentation.csproj", "{72767B3B-5A31-4302-B786-6420BA7A3816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Presentation", "Presentation\API\Reaction-api.Presentation.csproj", "{72767B3B-5A31-4302-B786-6420BA7A3816}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{1942908B-975E-4C62-94D6-A6D28261496A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1942908B-975E-4C62-94D6-A6D28261496A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaction-api.Domain", "1 - Domain\Reaction-api.Domain\Reaction-api.Domain.csproj", "{6A8BE21A-F191-4ED4-86C1-218B7EA318D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Domain", "Domain\Reaction-api.Domain\Reaction-api.Domain.csproj", "{6A8BE21A-F191-4ED4-86C1-218B7EA318D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{C11767EB-6C61-41CB-9B84-2EDE16930391}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C11767EB-6C61-41CB-9B84-2EDE16930391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaction-api.Application", "2 - Application\Reaction-api.Application\Reaction-api.Application.csproj", "{81C6CCA5-C73A-45ED-AE0E-304BDF607D8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Application", "Application\Reaction-api.Application\Reaction-api.Application.csproj", "{81C6CCA5-C73A-45ED-AE0E-304BDF607D8E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{28B04732-770A-4BB0-9D9E-0F3016360CAB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{28B04732-770A-4BB0-9D9E-0F3016360CAB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - Infra.Data", "3.1 - Infra.Data", "{81835DAD-9151-41B3-B475-CBC4DB4642CF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.Data", "Infra.Data", "{81835DAD-9151-41B3-B475-CBC4DB4642CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaction-api.Infra.Data", "3 - Infra\3.1 - Infra.Data\Reaction-api.Infra.Data\Reaction-api.Infra.Data.csproj", "{B4AE6401-01C7-41EA-AE5C-FC331193F95D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Infra.Data", "Infra\Infra.Data\Reaction-api.Infra.Data\Reaction-api.Infra.Data.csproj", "{B4AE6401-01C7-41EA-AE5C-FC331193F95D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 - Infra.CrossCutting.IoC", "3.2 - Infra.CrossCutting.IoC", "{CC586B01-910B-4F5C-8799-069C6B0A69EB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.CrossCutting.IoC", "Infra.CrossCutting.IoC", "{CC586B01-910B-4F5C-8799-069C6B0A69EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reacton-api.Infra.CrossCutting.IoC", "3 - Infra\3.2 - Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC.csproj", "{19A69611-C34C-4ED9-9C2B-41206ECA4B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reacton-api.Infra.CrossCutting.IoC", "Infra\Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC.csproj", "{19A69611-C34C-4ED9-9C2B-41206ECA4B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +39,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AAED98B1-9792-47A4-A2B6-D46BB8BC99FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -117,6 +114,9 @@ Global
 		{19A69611-C34C-4ED9-9C2B-41206ECA4B48}.Release|x86.ActiveCfg = Release|Any CPU
 		{19A69611-C34C-4ED9-9C2B-41206ECA4B48}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E6E2F516-AB17-4E4F-8B1B-844AB8FB75CF} = {F3F22150-9553-4B8C-B743-4591967725D5}
 		{AAED98B1-9792-47A4-A2B6-D46BB8BC99FB} = {E6E2F516-AB17-4E4F-8B1B-844AB8FB75CF}
@@ -127,5 +127,8 @@ Global
 		{B4AE6401-01C7-41EA-AE5C-FC331193F95D} = {81835DAD-9151-41B3-B475-CBC4DB4642CF}
 		{CC586B01-910B-4F5C-8799-069C6B0A69EB} = {28B04732-770A-4BB0-9D9E-0F3016360CAB}
 		{19A69611-C34C-4ED9-9C2B-41206ECA4B48} = {CC586B01-910B-4F5C-8799-069C6B0A69EB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E030DCC-DDCB-487E-B7D1-85B2DF1048D8}
 	EndGlobalSection
 EndGlobal
