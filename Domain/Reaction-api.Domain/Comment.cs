@@ -1,12 +1,11 @@
-using Reaction_api.Domain._Exceptions;
 using Reaction_api.Domain._Util;
 
 namespace Reaction_api.Domain
 {
     public class Comment : Entity
     {
-        public User User { get; private set; }
-        public string Text { get; private set; }
+        public User User { get; protected set; }
+        public string Text { get; protected set; }
 
         protected Comment() { }
         

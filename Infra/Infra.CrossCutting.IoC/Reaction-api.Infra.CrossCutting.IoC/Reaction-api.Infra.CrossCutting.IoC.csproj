@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Reaction_api.Infra.CrossCutting.IoC</RootNamespace>
+    <AssemblyName>Reaction-api.Infra.CrossCutting.IoC</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

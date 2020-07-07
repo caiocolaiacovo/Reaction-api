@@ -1,23 +1,33 @@
 using ExpectedObjects;
 using Reaction_api.Domain._Exceptions;
-using Reaction_api.Domain.Test._Builders;
-using Xunit;
 using Reaction_api.Domain.Test._Base;
-using System;
+using Reaction_api.Domain.Test._Builders;
 using Reaction_api.Domain.Test._Util;
+using Xunit;
 
 namespace Reaction_api.Domain.Test
 {
     public class MomentTest : UnitTestBase
     {
+        private readonly User _user;
+        private readonly string _picture;
+        private readonly string _description;
+
+        public MomentTest()
+        {
+            _user = UserBuilder.Instance().Build();
+            _picture = "http://localhost/public/photos/123.jpg";
+            _description = "This is a description";
+        }
+
         [Fact]
         public void Should_create_a_moment()
         {
             var expectedMoment = new
             {
-                User = UserBuilder.Instance().Build(),
-                Picture = faker.Internet.Url(),
-                Description = faker.Lorem.Paragraph()
+                User = _user,
+                Picture = _picture,
+                Description = _description
             };
 
             var moment = new Moment(expectedMoment.User,
@@ -30,11 +40,12 @@ namespace Reaction_api.Domain.Test
         [Fact]
         public void Should_not_create_a_moment_without_user()
         {
-            var expectedMessage = "User is required";
+            const string expectedMessage = "User is required";
+            User user = null;
 
-            Action action = () => MomentBuilder.Instance().WithUser(null).Build();
-            
-            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+            void Action() => new Moment(null, _picture, _description);
+
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
 
         [Theory]
@@ -43,11 +54,11 @@ namespace Reaction_api.Domain.Test
         [InlineData(" ")]
         public void Shoud_not_create_a_moment_with_invalid_picture(string invalidPicture)
         {
-            var expectedMessage = "Picture is required";
+            const string expectedMessage = "Picture is required";
 
-            Action action = () => MomentBuilder.Instance().WithPicture(invalidPicture).Build();
-            
-            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+            void Action() => new Moment(_user, invalidPicture, _description);
+
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
 
         [Theory]
@@ -56,11 +67,11 @@ namespace Reaction_api.Domain.Test
         [InlineData(" ")]
         public void Shoud_not_create_a_moment_with_invalid_description(string invalidDescription)
         {
-            var expectedMessage = "Description is required";
+            const string expectedMessage = "Description is required";
 
-            Action action = () => MomentBuilder.Instance().WithDescription(invalidDescription).Build();
-            
-            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+            void Action() => new Moment(_user, _picture, invalidDescription);
+
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
 
         [Fact]
@@ -79,12 +90,12 @@ namespace Reaction_api.Domain.Test
         [Fact]
         public void Should_not_add_a_null_comment()
         {
-            var expectedMessage = "Comment is required";
+            const string expectedMessage = "Comment is required";
             var moment = MomentBuilder.Instance().Build();
 
-            Action action = () => moment.AddComment(null);
+            void Action() => moment.AddComment(null);
 
-            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
     }
 }

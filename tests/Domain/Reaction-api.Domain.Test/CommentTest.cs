@@ -1,4 +1,3 @@
-using System;
 using ExpectedObjects;
 using Reaction_api.Domain._Exceptions;
 using Reaction_api.Domain.Test._Base;
@@ -15,7 +14,7 @@ namespace Reaction_api.Domain.Test
         {
             var expectedComment = new {
                 User = UserBuilder.Instance().Build(),
-                Text = faker.Lorem.Paragraphs(),
+                Text = "This is a comment",
             };
 
             var comment = new Comment(expectedComment.User, expectedComment.Text);
@@ -27,10 +26,11 @@ namespace Reaction_api.Domain.Test
         public void Should_not_create_a_comment_without_user()
         {
             const string expectedMessage = "User is required";
+            const string text = "This is a comment";
 
-            Action action = () => CommentBuilder.Instance().WithUser(null).Build();
+            void Action() => new Comment(null, text);
 
-            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
 
         [Theory]
@@ -40,14 +40,11 @@ namespace Reaction_api.Domain.Test
         public void Should_not_create_a_comment_with_invalid_text(string invalidText)
         {
             const string expectedMessage = "Text is required";
+            var user = UserBuilder.Instance().Build();
 
-            Action action = () => CommentBuilder
-                .Instance()
-                .WithUser(UserBuilder.Instance().Build())
-                .WithText(invalidText)
-                .Build();
+            void Action() => new Comment(user, invalidText);
 
-            Assert.Throws<DomainException>(action).WithMessage(expectedMessage);
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
     }
 }

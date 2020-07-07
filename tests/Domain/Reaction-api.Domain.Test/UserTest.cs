@@ -1,22 +1,22 @@
-using Bogus;
 using ExpectedObjects;
 using Reaction_api.Domain._Exceptions;
-using Reaction_api.Domain;
-using Reaction_api.Domain.Test._Builders;
-using Xunit;
 using Reaction_api.Domain.Test._Util;
-using System;
 using System.Collections.Generic;
+using Xunit;
 
 namespace Reaction_api.Domain.Test
 {
     public class UserTest
     {
-        public Faker faker { get; set; }
+        private readonly string _name;
+        private readonly string _profile;
+        private readonly string _avatar;
 
         public UserTest()
         {
-            faker = new Faker();
+            _name = "Caio Colaiacovo Carneiro da Costa";
+            _profile = "caiocolaiacovo";
+            _avatar = "http://localhost/photo/avatar.jpg";
         }
 
         [Fact]
@@ -24,16 +24,13 @@ namespace Reaction_api.Domain.Test
         {
             var expectedUser = new
             {
-                Name = faker.Person.FullName,
-                Profile = faker.Person.UserName,
-                Avatar = faker.Internet.Url(),
+                Name = _name,
+                Profile = _profile,
+                Avatar = _avatar,
                 Moments = new List<Moment>()
             };
 
-            var user = UserBuilder.Instance().WithName(expectedUser.Name).
-                  WithProfile(expectedUser.Profile).
-                  WithAvatar(expectedUser.Avatar).
-                  Build();
+            var user = new User(expectedUser.Name, expectedUser.Profile, expectedUser.Avatar);
 
             expectedUser.ToExpectedObject().ShouldMatch(user);
         }
@@ -42,33 +39,33 @@ namespace Reaction_api.Domain.Test
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Should_not_create_a_user_without_name(string invalidName)
+        public void Should_not_create_a_user_with_invalid_name(string invalidName)
         {
-            Action action = () => UserBuilder.Instance().WithName(invalidName).Build();
+            void Action() => new User(invalidName, _profile, _avatar);
             
-            Assert.Throws<DomainException>(action).WithMessage("Name is required");
+            Assert.Throws<DomainException>(Action).WithMessage("Name is required");
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Should_not_create_a_user_without_profile(string invalidProfile)
+        public void Should_not_create_a_user_with_invalid_profile(string invalidProfile)
         {
-            Action action = () => UserBuilder.Instance().WithProfile(invalidProfile).Build();
-            
-            Assert.Throws<DomainException>(action).WithMessage("Profile is required");
+            void Action() => new User(_name, invalidProfile, _avatar);
+
+            Assert.Throws<DomainException>(Action).WithMessage("Profile is required");
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Should_not_create_a_user_without_avatar(string invalidAvatar)
+        public void Should_not_create_a_user_with_invalid_avatar(string invalidAvatar)
         {
-            Action action = () => UserBuilder.Instance().WithAvatar(invalidAvatar).Build();
-            
-            Assert.Throws<DomainException>(action).WithMessage("Avatar is required");
+            void Action() => new User(_name, _profile, invalidAvatar);
+
+            Assert.Throws<DomainException>(Action).WithMessage("Avatar is required");
         }
     }
 }

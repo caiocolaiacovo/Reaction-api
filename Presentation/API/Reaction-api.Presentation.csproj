@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infra\Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\..\Infra\Infra.CrossCutting.IoC\Reaction-api.Infra.CrossCutting.IoC\Reaction-api.Infra.CrossCutting.IoC.csproj" />
     <ProjectReference Include="..\..\Infra\Infra.Data\Reaction-api.Infra.Data\Reaction-api.Infra.Data.csproj" />
     <ProjectReference Include="..\..\Application\Reaction-api.Application\Reaction-api.Application.csproj" />
   </ItemGroup>

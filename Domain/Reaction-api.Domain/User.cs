@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using Reaction_api.Domain._Util;
+using System.Collections.Generic;
 
 namespace Reaction_api.Domain
 {
     public class User : Entity {
-        public string Name { get; private set; }
-        public string Profile { get; private set; }
-        public string Avatar { get; private set; }
-        public virtual ICollection<Moment> Moments { get; private set; }
+        public string Name { get; protected set; }
+        public string Profile { get; protected set; }
+        public string Avatar { get; protected set; }
+        public virtual ICollection<Moment> Moments { get; protected set; }
 
         protected User() {}
 
         public User (string name, string profile, string avatar) {
             DomainValidator.New()
-                .When(string.IsNullOrEmpty(name) || name.Trim() == string.Empty, "Name is required")
-                .When(string.IsNullOrEmpty(profile) || profile.Trim() == string.Empty, "Profile is required")
-                .When(string.IsNullOrEmpty(avatar) || avatar.Trim() == string.Empty, "Avatar is required");
+                .When(string.IsNullOrWhiteSpace(name), "Name is required")
+                .When(string.IsNullOrWhiteSpace(profile), "Profile is required")
+                .When(string.IsNullOrWhiteSpace(avatar), "Avatar is required");
 
             Name = name;
             Profile = profile;

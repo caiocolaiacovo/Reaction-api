@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Reaction_api.Application.Infrastructure;
 using Reaction_api.Application.Infrastructure.Query;
 using Reaction_api.Application.Query.Moments;
 using Reaction_api.Domain;

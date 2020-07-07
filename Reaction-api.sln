@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Infra.Data", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.CrossCutting.IoC", "Infra.CrossCutting.IoC", "{CC586B01-910B-4F5C-8799-069C6B0A69EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reacton-api.Infra.CrossCutting.IoC", "Infra\Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC\Reacton-api.Infra.CrossCutting.IoC.csproj", "{19A69611-C34C-4ED9-9C2B-41206ECA4B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reaction-api.Infra.CrossCutting.IoC", "Infra\Infra.CrossCutting.IoC\Reaction-api.Infra.CrossCutting.IoC\Reaction-api.Infra.CrossCutting.IoC.csproj", "{19A69611-C34C-4ED9-9C2B-41206ECA4B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

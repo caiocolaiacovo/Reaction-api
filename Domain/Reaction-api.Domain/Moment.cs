@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
 using Reaction_api.Domain._Exceptions;
 using Reaction_api.Domain._Util;
+using System.Collections.Generic;
 
 namespace Reaction_api.Domain
 {
     public class Moment : Entity
     {
         public User User { get; protected set; }
-        public DateTime CreatedAt { get; protected set; }
         public string Picture { get; protected set; }
         public string Description { get; protected set; }
-        public int Reactions { get; protected set; }
         public virtual ICollection<Comment> Comments { get; protected set; }
 
         protected Moment() {}
