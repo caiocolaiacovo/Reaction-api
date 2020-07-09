@@ -43,7 +43,7 @@ namespace Reaction_api.Domain.Test
             const string expectedMessage = "User is required";
             User user = null;
 
-            void Action() => new Moment(null, _picture, _description);
+            void Action() => new Moment(user, _picture, _description);
 
             Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }
@@ -52,7 +52,7 @@ namespace Reaction_api.Domain.Test
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Shoud_not_create_a_moment_with_invalid_picture(string invalidPicture)
+        public void Shoud_not_create_a_moment_without_picture(string invalidPicture)
         {
             const string expectedMessage = "Picture is required";
 
@@ -65,7 +65,7 @@ namespace Reaction_api.Domain.Test
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void Shoud_not_create_a_moment_with_invalid_description(string invalidDescription)
+        public void Shoud_not_create_a_moment_without_description(string invalidDescription)
         {
             const string expectedMessage = "Description is required";
 
@@ -75,25 +75,52 @@ namespace Reaction_api.Domain.Test
         }
 
         [Fact]
-        public void Should_add_comment_to_a_moment()
+        public void Should_receive_a_comment()
         {
             var comment = CommentBuilder.Instance().Build();
             var moment = MomentBuilder.Instance().Build();
             var expectedComments = new[] { comment };
 
-            moment.AddComment(comment);
+            moment.ReceiveComment(comment);
 
             var comments = moment.Comments;
             expectedComments.ToExpectedObject().ShouldMatch(comments);
         }
 
         [Fact]
-        public void Should_not_add_a_null_comment()
+        public void Should_not_receive_a_null_comment()
         {
             const string expectedMessage = "Comment is required";
             var moment = MomentBuilder.Instance().Build();
+            Comment comment = null;
 
-            void Action() => moment.AddComment(null);
+            void Action() => moment.ReceiveComment(comment);
+
+            Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
+        }
+
+        [Fact]
+        public void Should_receive_a_reaction_from_user()
+        {
+            var user = UserBuilder.Instance().Build();
+            var moment = MomentBuilder.Instance().Build();
+            var reaction = new Reaction(user, "Like");
+            var expectedReactions = new[] { reaction };
+
+            moment.ReceiveReaction(reaction);
+
+            var reactions = moment.Reactions;
+            expectedReactions.ToExpectedObject().ShouldMatch(reactions);
+        }
+
+        [Fact]
+        public void Should_not_receive_a_null_reaction()
+        {
+            const string expectedMessage = "Reaction is required";
+            var moment = MomentBuilder.Instance().Build();
+            Reaction reaction = null;
+
+            void Action() => moment.ReceiveReaction(reaction);
 
             Assert.Throws<DomainException>(Action).WithMessage(expectedMessage);
         }

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Reaction_api.Infra.CrossCutting.IoC;
 using Reaction_api.Infra.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 
 namespace Reaction_api.Presentation
 {

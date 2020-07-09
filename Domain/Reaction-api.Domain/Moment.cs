@@ -1,5 +1,6 @@
 using Reaction_api.Domain._Exceptions;
 using Reaction_api.Domain._Util;
+using System;
 using System.Collections.Generic;
 
 namespace Reaction_api.Domain
@@ -10,6 +11,7 @@ namespace Reaction_api.Domain
         public string Picture { get; protected set; }
         public string Description { get; protected set; }
         public virtual ICollection<Comment> Comments { get; protected set; }
+        public virtual ICollection<Reaction> Reactions { get; protected set; }
 
         protected Moment() {}
 
@@ -24,14 +26,23 @@ namespace Reaction_api.Domain
             Picture = picture;
             Description = description;
             Comments = new List<Comment>();
+            Reactions = new List<Reaction>();
         }
 
-        public void AddComment(Comment comment)
+        public void ReceiveComment(Comment comment)
         {
             if (comment == null)
                 throw new DomainException("Comment is required");
 
             Comments.Add(comment);
+        }
+
+        public void ReceiveReaction(Reaction reaction)
+        {
+            if (reaction == null)
+                throw new DomainException("Reaction is required");
+
+            Reactions.Add(reaction);
         }
     }
 }

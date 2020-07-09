@@ -1,5 +1,4 @@
 using Bogus;
-using Reaction_api.Domain;
 
 namespace Reaction_api.Domain.Test._Builders
 {
